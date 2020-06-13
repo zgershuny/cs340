@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Associate Player</h1>
+    <p> Select the Player on the Card</p>
+  </div>
+
+  {{!-- change player - dropdown dynamically prepopulated field --}}
+    <form action="/changePlayer_change" method="post">
+      <table>
+        {{!-- Player INFO --}}
+        <div class="form-group">
+        <label for="changePlayer">Designate {{cardYear}} {{cardBrand}} to this </label>
+        <select name="playerID" id="playerID" required>
+          <option value="none" selected disabled hidden> Player </option>
+          {{#each players}}
+            <option value="{{playerID}}">{{p_name}}</option>
+          {{/each}}
+        </select>
+        </div>
+        {{!-- SUBMIT Changes --}}
+        <input type="hidden" id="cardID" name="cardID" value="{{cardID}}">
+        <button type="submit" value="Submit" class="btn btn-primary">Change</button>
+      </table>
+    </form>
+</div>

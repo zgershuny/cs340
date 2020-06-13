@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Search Cards by Player</h1>
+  </div>
+  <p> No records for {{this.p_fName}} {{this.p_lName}}.</p>
+  
+  <h2> Add a New Player </h2>
+    <form id="addPlayer_form" name="addPlayer_form" action="/addPlayer" method="post">
+	    <div class="form-group">
+	      <label for="p_fName">First Name</label>
+	      <input type="text" class="form-control" name="p_fName" id="p_fName" placeholder="DJ" required>
+	    </div>
+	    <div class="form-group">
+	      <label for="p_lName">Last Name</label>
+	      <input type="text" class="form-control" name="p_lName" id="p_lName" placeholder="LeMahieu" required>
+	    </div>
+	    <button type="submit" value ="Submit" class="btn btn-primary">Submit</button>
+	  </form>
+</div>

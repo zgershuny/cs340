@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Search Cards by Team</h1>
+    <p> Search, Add, Update, and Delete for all the teams in the Database.</p>
+  </div>
+
+{{!-- add a new team --}}
+  {{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+  <section>
+  <div>
+    <h2> Add a New Team </h2>
+      <form id="addTeam_form" name="addTeam_form" action="/addTeam" method="post">
+        <div class="form-row">
+          <div class="col">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" name="location" id="location" placeholder="Trenton" required>
+          </div>
+          <div class="col">
+            <label for="teamName">Name</label>
+            <input type="text" class="form-control" name="teamName" id="teamName" placeholder="Thunders" required>
+          </div>
+        </div>
+        <button type="submit" value ="Submit" class="btn btn-primary">Add</button>
+      </form>
+  </div>
+  </section>
+
+<br>
+
+{{!-- search a team --}}
+	{{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+  <section>
+    <h2> Search a Team </h2>
+  <div>
+  	<form id="searchTeam_form" name="searchTeam_form" action="/searchTeam_search" method="post">
+  		<div class="form-row">
+        <div class="col">
+  			<label for="location">Location</label>
+  			<input type="text" class="form-control" name="location" id="location" placeholder="Trenton">
+  		</div>
+  		<div class="col">
+  			<label for="teamName">Name</label>
+  			<input type="text" class="form-control" name="teamName" id="teamName" placeholder="Thunders">
+  		</div>
+    </div>
+  	<button type="submit" value ="Submit" class="btn btn-primary">Search</button>
+  	</form>
+
+    {{!-- display teams --}}
+    <form action="/" class="form-group" method="post">
+        <table>
+            <thead>
+                <th>Location</th>
+                <th>Name</th>
+            </thead>
+            <tbody>
+                {{#each cards}}
+                <tr>
+                    <td>{{location}}</td>
+                    <td>{{teamName}}</td>
+                    <td>
+                      <form action="/" method="post">
+        	          		<input type="hidden" name="teamID" id="teamID" value="{{teamID}}">
+        	              <input type="hidden" name="location" id="location" value="{{location}}">
+        	              <input type="hidden" name="teamName" id="teamName" value="{{teamName}}">
+        	              <button type="submit" formaction="/updateTeam">Update</button>
+        	          	</form>
+                    </td>
+                    <td>
+                      <form action="/" method="post">
+                        <input type="hidden" name="teamID" id="teamID" value="{{teamID}}">
+                        <button type="submit" formaction="/deleteTeam">Delete</button>
+                      </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </form>
+  </div>
+  </section>
+<div>

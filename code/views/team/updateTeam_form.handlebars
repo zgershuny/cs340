@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Update Team</h1>
+    <p> Update Team's Info</p>
+  </div>
+  <form action="/updateTeam_update" method="post">
+    {{!-- HIDDEN ATTRIBUTES PKS/FKS --}}
+    <input type="hidden" id="teamID" name="teamID" value="{{teamID}}">
+    <table>
+      {{!-- Team INFO --}}
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" name="location" id="location" value="{{location}}" required>
+      </div>
+      <div class="form-group">
+      <label for="teamName">Name</label>
+      <input type="text" class="form-control" name="teamName" id="teamName" value="{{teamName}}" required>
+      </div>
+      {{!-- SUBMIT Changes --}}
+      <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </table>
+  </form>
+</div>

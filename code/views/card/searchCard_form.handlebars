@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Search Cards</h1>
+    <p> Search, Add, Update, and Delete for all the cards in the Database. </p>
+  </div>
+
+  {{!-- Add a new card --}}
+  <section>
+  <div>
+    <h2> Add a New Card </h2>
+    {{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+    <form id="addCard_form" name="addCard_form" action="/addCard" method="post">
+      <div class="form-row">
+        <div class="col">
+          <label for="cardYear">Year</label>
+          <input type="number" min="1860" class="form-control" name="cardYear" id="cardYear" placeholder="2020" required>
+        </div>
+        <div class="col">
+          <label for="cardBrand">Brand</label>
+          <input type="text" class="form-control" name="cardBrand" id="cardBrand" placeholder="Bowman" required>
+        </div>
+      </div>
+      <button type="submit" value ="Submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+  </section>
+<br>
+
+
+  {{!-- Search for a Card --}}
+	{{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+  <section>
+  <div>
+    <h2> Search </h2>
+  	<form id="searchCard_form" name="searchCard_form" action="/searchCard_search" method="post">
+  		<div class="form-row">
+        <div class="col">
+    			<label for="cardYear">Year</label>
+    			<input type="number" min="1860" class="form-control" name="cardYear" id="cardYear" placeholder="2020">
+        </div>
+    		<div class="col">
+    			<label for="cardBrand">Brand</label>
+    			<input type="text" class="form-control" name="cardBrand" id="cardBrand" placeholder="Bowman">
+    		</div>
+      </div>
+      <button type="submit" value ="Submit" class="btn btn-primary">Search</button>
+  	</form>
+
+
+    {{!-- Display All Cards --}}
+    <form action="/" class="form-group" method="post">
+        <table>
+            <thead>
+                <th>Year</th>
+                <th>Brand</th>
+            </thead>
+            <tbody>
+                {{#each cards}}
+                <tr>
+                    <td>{{cardYear}}</td>
+                    <td>{{cardBrand}}</td>
+                    <td>
+                        <form action="/" method="post">
+        	          		<input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+        	              <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+        	              <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+        	              <button type="submit" formaction="/updateCard">Update</button>
+        	          	</form>
+                    </td>
+                    <td>
+                      <form action="/" method="post">
+                        <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+                        <button type="submit" formaction="/deleteCard">Delete</button>
+                      </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </form>
+  </div>
+</section>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Update Type</h1>
+    <p> Update Type's Info</p>
+  </div>
+  <form action="/updateType_update" method="post">
+    {{!-- HIDDEN ATTRIBUTES PKS/FKS --}}
+    <input type="hidden" id="typeID" name="typeID" value="{{typeID}}">
+    <table>
+      {{!-- Type INFO --}}
+      <div class="form-group">
+        <label for="grade">Grade</label>
+        <input type="number" class="form-control" min="0" max="10" step=".5" name="grade" id="grade" value="{{grade}}"required>
+      </div>
+      <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" name="description" id="description" value="{{description}}">
+      </div>
+      {{!-- SUBMIT Changes --}}
+      <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </table>
+  </form>
+</div>

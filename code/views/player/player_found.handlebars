@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Display Cards by Player</h1>
+    <p>Found player(s) based on your entry.</p>
+  </div>
+
+{{!-- display player search results --}}
+<form action="/" class="form-group" method="post">
+    <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </thead>
+        <tbody>
+            {{#each cards}}
+            <tr>
+                <td>{{p_fName}}</td>
+                <td>{{p_lName}}</td>
+                <td>
+                    <form action="/" method="post">
+                        <input type="hidden" name="playerID" id="playerID" value="{{playerID}}">
+                        <input type="hidden" name="p_fName" id="p_fName" value="{{p_fName}}">
+                        <input type="hidden" name="p_lName" id="p_lName" value="{{p_lName}}">
+                        <button type="submit" formaction="/updatePlayer">Update</button>
+                    </form>
+                <td>
+                <td>
+                    <form action="/" method="post">
+                      <input type="hidden" name="playerID" id="playerID" value="{{playerID}}">
+                      <button type="submit" formaction="/deletePlayer">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+</div>

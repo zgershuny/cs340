@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Display Cards</h1>
+    <p>Found cards(s) based on your entry.</p>
+  </div>
+
+{{!-- Display Found Cards Based on your search --}}
+<form action="/" class="form-group" method="post">
+    <table>
+        <thead>
+            <th>Year</th>
+            <th>Brand</th>
+        </thead>
+        <tbody>
+            {{#each cards}}
+            <tr>
+                <td>{{cardYear}}</td>
+                <td>{{cardBrand}}</td>
+                <td>
+                    {{!-- pass on the values to update the card --}}
+                    <form action="/" method="post">
+                        <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+                        <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+                        <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+                        <button type="submit" formaction="/updateCard">Update</button>
+                    </form>
+                  </td>
+                <td>
+                    {{!-- pass on the values to delete the card --}}
+                  <form action="/" method="post">
+                    <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+                    <button type="submit" formaction="/deleteCard">Delete</button>
+                  </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+</div>

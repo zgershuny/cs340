@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Display Cards by Teams</h1>
+    <p>Found teams(s) based on your entry.</p>
+  </div>
+
+{{!-- display team search results --}}
+<form action="/" class="form-group" method="post">
+  <table>
+      <thead>
+          <th>Location</th>
+          <th>Team Name</th>
+      </thead>
+      <tbody>
+          {{#each cards}}
+          <tr>
+              <td>{{location}}</td>
+              <td>{{teamName}}</td>
+              <td> 
+                  <form action="/" method="post">
+                    <input type="hidden" name="teamID" id="teamID" value="{{teamID}}">
+                    <input type="hidden" name="location" id="location" value="{{location}}">
+                    <input type="hidden" name="teamName" id="teamName" value="{{teamName}}">
+                    <button type="submit" formaction="/updateTeam">Update</button>
+                  </form>
+              </td>
+              <td>
+                <form action="/" method="post">
+                  <input type="hidden" name="teamID" id="teamID" value="{{teamID}}">
+                  <button type="submit" formaction="/deleteTeam">Delete</button>
+                </form>
+              </td>
+          </tr>
+          {{/each}}
+      </tbody>
+  </table>
+</form>
+</div>

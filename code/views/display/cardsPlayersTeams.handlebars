@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Display Cards, Players, and Teams</h1>
+    <p> View all the cards associated to all the teams.</p>
+  </div>
+
+<table>
+    <thead>
+        <th>Card</th>
+        <th>Full Name</th>
+        <th>Team Name</th>
+    </thead>
+    <tbody>
+        {{#each cards}}
+        <tr>
+            <td>{{Card}}</td>
+            <td>{{FullName}}</td>
+            <td>{{TeamName}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

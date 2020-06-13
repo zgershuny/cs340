@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Types </h1>
+    <p> Add a new Grade and Description.</p>
+    <p> Search, Add, Update, and Delete for all Types in the Database.</p>
+  </div>
+
+  {{!-- ADD TYPE --}}
+  <section>
+  <div>
+    <h2> Add a New Description </h2>
+    <form id="addType_form" name="addType_form" action="/addType" method="post">
+      <div class="form-row">
+        <div class="col">
+          <label for="grade">Grade</label>
+          <input type="number" min="0" max="10" step=".50" class="form-control" name="grade" id="grade" placeholder="9.5">
+        </div>
+        <div class="col">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description" placeholder="gem mint!">
+        </div>
+      </div>
+      <button type="submit" value ="Submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+  </section>
+
+  <br>
+  {{!-- SEARCH TYPE - prepopulated dropdown field--}}
+	{{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+  <section>
+  <div>
+    <h2> Search </h2>
+  	<form id="searchType_form" name="searchType_form" action="/searchType_search" method="post">
+  		<select name="grade" id="grade" required>
+        <option value="none" selected disabled hidden> Select Grade </option>
+        {{#each types}}
+          <option value="{{grade}}">{{grade}}</option>
+        {{/each}}
+       </select>
+  		<button type="submit" value ="Submit" class="btn btn-primary">Search</button>
+  	</form>
+
+    {{!-- display types --}}
+    <form action="/" class="form-group" method="post">
+      <table>
+          <thead>
+              <th>Grade</th>
+              <th>Description</th>
+          </thead>
+          <tbody>
+              {{#each cards}}
+              <tr>
+                  <td>{{grade}}</td>
+                  <td>{{description}}</td>
+                  {{!-- pass on values to the buttons --}}
+                  <td>
+                    <form action="/" method="post">
+                      <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+                      <input type="hidden" name="grade" id="grade" value="{{grade}}">
+                      <input type="hidden" name="description" id="description" value="{{description}}">
+                      <button type="submit" formaction="/updateType">Update</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="/" method="post">
+                      <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+                      <button type="submit" formaction="/deleteType">Delete</button>
+                    </form>
+                  </td>
+              </tr>
+              {{/each}}
+          </tbody>
+      </table>
+    </form>
+  </div>
+  </section>
+</div>

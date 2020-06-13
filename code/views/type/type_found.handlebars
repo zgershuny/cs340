@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Display Cards by Grade</h1>
+    <p>Found grade(s) based on your entry.</p>
+  </div>
+
+{{!-- display results after successfully finding a type --}}
+<form action="/" class="form-group" method="post">
+  
+    <table>
+        <thead>
+            <th>Grade</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            {{#each cards}}
+            <tr>
+                <td>{{grade}}</td>
+                <td>{{description}}</td>
+                <td>
+                    <form action="/" method="post">
+                        <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+                        <input type="hidden" name="grade" id="grade" value="{{grade}}">
+                        <input type="hidden" name="description" id="description" value="{{description}}">
+                        <button type="submit" formaction="/updateType">Update</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/" method="post">
+                      <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+                      <button type="submit" formaction="/deleteType">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+</div>

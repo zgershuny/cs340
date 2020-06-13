@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Search Cards</h1>
+  </div>
+  {{!-- Display message --}}
+  <p> No records for {{this.cardYear}} {{this.cardBrand}}.</p>
+
+  {{!-- add a new card --}}
+  <h2> Add a New Card </h2>
+    {{!-- CITATION: https://getbootstrap.com/docs/4.0/components/forms/ --}}
+    <form id="addCard_form" name="addCard_form" action="/addCard" method="post">
+      <div class="form-row">
+        <div class="col">
+          <label for="cardYear">Year</label>
+          <input type="number" min="1860" class="form-control" name="cardYear" id="cardYear" placeholder="2020" required>
+        </div>
+        <div class="col">
+          <label for="cardBrand">Brand</label>
+          <input type="text" class="form-control" name="cardBrand" id="cardBrand" placeholder="Bowman" required>
+        </div>
+      </div>
+      <button type="submit" value ="Submit" class="btn btn-primary">Add</button>
+    </form>
+</div>

@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Full View </h1>
+    <p> View all the cards with their complete information (Cards, Players, Teams, and Types).</p>
+    <P>Change Attributes' values for Player, Type, and Team (ie different player). Delete a Card and its type if associated.</p>
+    <p> Add a new card (catalogue) by entering the year and brand, selecting existing player and team, and determining the grade and noting description. Year, Brand, and Grade are required fields. If you want to add a player or team at a later time, please do not change the values and leave it as "Player" or "Team".</p>
+    <p> Can also update Card and Type.</p>
+  </div>
+  {{!-- ADD A New Card --}}
+  <div>
+    <h2> Catalogue a New Card </h2>
+    <form id="createCard_form" name="createCard_form" action="/fullView" method="post">
+      <div class="form-row">
+        {{!-- Card Info --}}
+        <div class="col">
+          <label for="cardYear">Year</label>
+          <input type="number" min="1860" class="form-control" name="cardYear" id="cardYear" placeholder="2020" required>
+        </div>
+        <div class="col">
+          <label for="cardBrand">Brand</label>
+          <input type="text" class="form-control" name="cardBrand" id="cardBrand" placeholder="Bowman" required>
+        </div>
+        {{!-- Player Info --}}
+        <div class="col">
+          <label for="changePlayer">Select</label>
+          <select name="playerID" id="playerID">
+            <option value="none" selected disabled hidden> Player </option>
+            {{#each players}}
+              <option value="{{playerID}}">{{p_name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        {{!-- Team Info --}}
+        <div class="col">
+          <label for="changeTeam">Select</label>
+          <select name="teamID" id="teamID">
+            <option value="none" selected disabled hidden> Team </option>
+            {{#each teams}}
+              <option value="{{teamID}}">{{t_name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      {{!-- Type Info --}}
+        <div class="col">
+          <label for="grade">Grade</label>
+          <input type="number" min="0" max="10" step=".50" class="form-control" name="grade" id="grade" placeholder="9.5" required>
+        </div>
+        <div class="col">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description" placeholder="gem mint!">
+        </div>
+      </div>
+      <button type="submit" value ="Submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <br>
+  {{!-- DISPLAY Cards --}}
+  <div>
+    <table>
+      <thead>
+        <th>Year</th>
+        <th>Brand</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Location</th>
+        <th>Team Name</th>
+        <th>Grade</th>
+        <th>Description</th>
+        <th>Update</th>
+        <th>Change</th>
+      </thead>
+      <tbody>
+        {{#each cards}}
+        <tr>
+          <td>{{cardYear}}</td>
+          <td>{{cardBrand}}</td>
+          <td>{{p_fName}}</td>
+          <td>{{p_lName}}</td>
+          <td>{{location}}</td>
+          <td>{{teamName}}</td>
+          <td>{{grade}}</td>
+          <td>{{description}}</td>
+          <td>
+            {{!-- Update/Change Buttons --}}
+            <form action="/" method="post">
+              <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+              <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+              <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+              <button type="submit" formaction="/changeCard">Card</button>
+            </form>
+            <form action="/" method="post">
+              <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+              <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+              <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+              <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+              <input type="hidden" name="grade" id="grade" value="{{grade}}">
+              <input type="hidden" name="description" id="description" value="{{description}}">
+              <button type="submit" formaction="/changeType">Type</button>
+            </form>
+          </td>
+          <td>
+            <form action="/" method="post">
+              <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+              <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+              <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+              <input type="hidden" name="teamID" id="teamID" value="{{teamID}}">
+              <input type="hidden" name="location" id="location" value="{{location}}">
+              <input type="hidden" name="teamName" id="teamName" value="{{teamName}}">
+              <button type="submit" formaction="/changeTeam">Team</button>
+            </form>
+            <form action="/" method="post">
+              <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+              <input type="hidden" name="cardYear" id="cardYear" value="{{cardYear}}">
+              <input type="hidden" name="cardBrand" id="cardBrand" value="{{cardBrand}}">
+              <input type="hidden" name="playerID" id="playerID" value="{{playerID}}">
+              <input type="hidden" name="p_fName" id="p_fName" value="{{p_fName}}">
+              <input type="hidden" name="p_lName" id="p_lName" value="{{p_lName}}">
+              <button type="submit" formaction="/changePlayer">Player</button>
+            </form>
+          </td>
+          </td>
+          <td>
+            <form action="/" method="post">
+              <input type="hidden" name="cardID" id="cardID" value="{{cardID}}">
+              <input type="hidden" name="typeID" id="typeID" value="{{typeID}}">
+              <button type="submit" formaction="/deleteCard">Delete</button>
+            </form>
+          </td>
+        </tr>
+            {{/each}}
+        </tbody>
+  </div>
+</table>
+</div>
+

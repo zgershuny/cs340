@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-road" aria-hidden="true"></i> Associate Team</h1>
+    <p> Select the Team for the Card</p>
+  </div>
+
+    <form action="/changeTeam_change" method="post">
+      <table>
+        {{!-- Team INFO --}}
+        <div class="form-group">
+        <label for="changeTeam">Designate {{cardYear}} {{cardBrand}} to this </label>
+        <select name="teamID" id="teamID" required>
+          <option value="none" selected disabled hidden> Team </option>
+          {{#each teams}}
+            <option value="{{teamID}}">{{t_name}}</option>
+          {{/each}}
+        </select>
+        </div>
+        {{!-- SUBMIT Changes --}}
+        <input type="hidden" id="cardID" name="cardID" value="{{cardID}}">
+        <button type="submit" value="Submit" class="btn btn-primary">Change</button>
+      </table>
+    </form>
+</div>
